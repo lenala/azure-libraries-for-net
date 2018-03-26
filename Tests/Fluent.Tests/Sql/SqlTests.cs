@@ -14,7 +14,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading;
+using Microsoft.Rest;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace Fluent.Tests
 {
@@ -28,6 +30,13 @@ namespace Fluent.Tests
         private static readonly string SqlFirewallRuleName = "firewallrule1";
         private static readonly string StartIPAddress = "10.102.1.10";
         private static readonly string EndIPAddress = "10.102.1.12";
+
+        public Sql(ITestOutputHelper output)
+        {
+            TestHelper.TestLogger = output;
+            ServiceClientTracing.IsEnabled = true;
+            ServiceClientTracing.AddTracingInterceptor(new XunitTracingInterceptor(output));
+        }
 
         private static void GenerateNewRGAndSqlServerNameForTest([CallerMemberName] string methodName = "testframework_failed")
         {
