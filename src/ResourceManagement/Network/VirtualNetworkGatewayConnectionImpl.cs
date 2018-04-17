@@ -67,7 +67,7 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:AC21A10EE2E745A89E94E447800452C1:A029F579BEAF734FDD0D1A010CE89549
         private void BeforeCreating()
         {
-            SubResource virtualNetworkGatewayRef = new SubResource()
+            VirtualNetworkGatewayInner virtualNetworkGatewayRef = new VirtualNetworkGatewayInner()
             {
                 Id = parent.Id
             };
@@ -97,7 +97,7 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:8D609444E5B12F47A2302B445E89BEE5:43AD2FCE7B0EAA8CBA41E52CCCA78770
         public VirtualNetworkGatewayConnectionType ConnectionType()
         {
-            return VirtualNetworkGatewayConnectionType.Parse(Inner.ConnectionType);
+            return Inner.ConnectionType;
         }
 
         ///GENMHASH:5AD91481A0966B059A478CD4E9DD9466:C6001AE2B48A1402A8313022A5CF5590
@@ -109,7 +109,7 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:04D6D858FF61D37F76DA127C20A5ABF9:DFC8C1E6C2A0BC0C3178B00DC329D6B7
         public VirtualNetworkGatewayConnectionImpl WithLocalNetworkGateway(ILocalNetworkGateway localNetworkGateway)
         {
-            SubResource localNetworkGatewayRef = new SubResource()
+            LocalNetworkGatewayInner localNetworkGatewayRef = new LocalNetworkGatewayInner()
             {
                 Id = localNetworkGateway.Id
             };
@@ -126,7 +126,7 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:1526F9C6D16D576524554408BA6A97AD:5EBA369C1D9EE8D92A96DC8E7D452DF1
         public VirtualNetworkGatewayConnectionImpl WithSecondVirtualNetworkGateway(IVirtualNetworkGateway virtualNetworkGateway2)
         {
-            SubResource virtualNetworkGateway2Ref = new SubResource()
+            VirtualNetworkGatewayInner virtualNetworkGateway2Ref = new VirtualNetworkGatewayInner()
             {
                 Id = virtualNetworkGateway2.Id
             };
@@ -181,7 +181,7 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:629786B45F85F8E289D849497FF3EB84:328FF3B049F2421E1BB77C26A4256370
         public VirtualNetworkGatewayConnectionImpl WithVNetToVNet()
         {
-            Inner.ConnectionType = VirtualNetworkGatewayConnectionType.Vnet2Vnet.Value;
+            Inner.ConnectionType = VirtualNetworkGatewayConnectionType.Vnet2Vnet;
             return this;
         }
 
@@ -210,7 +210,7 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:C70D23F4587F98FF6D0A29A186DD0C1E:7AD73DFFC315FFB18F7BA235DFC6F4ED
         public VirtualNetworkGatewayConnectionImpl WithExpressRoute(string circuitId)
         {
-            Inner.ConnectionType = VirtualNetworkGatewayConnectionType.ExpressRoute.Value;
+            Inner.ConnectionType = VirtualNetworkGatewayConnectionType.ExpressRoute;
             Inner.Peer = new SubResource()
             {
                 Id = circuitId
@@ -251,13 +251,13 @@ namespace Microsoft.Azure.Management.Network.Fluent
         ///GENMHASH:FEB663768504525640BBFB5A208F3B76:BC57D6829223294BCF9ED45D4B96D238
         public VirtualNetworkGatewayConnectionStatus ConnectionStatus()
         {
-            return VirtualNetworkGatewayConnectionStatus.Parse(Inner.ConnectionStatus);
+            return Inner.ConnectionStatus;
         }
 
         ///GENMHASH:21044C5DE2790341DFD3F758A2850299:735429DEBDE0B3FC24266278F000BE53
         public VirtualNetworkGatewayConnectionImpl WithSiteToSite()
         {
-            Inner.ConnectionType = VirtualNetworkGatewayConnectionType.IPsec.Value;
+            Inner.ConnectionType = VirtualNetworkGatewayConnectionType.IPsec;
             return this;
         }
 
