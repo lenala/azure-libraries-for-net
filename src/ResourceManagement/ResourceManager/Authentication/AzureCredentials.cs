@@ -64,6 +64,22 @@ namespace Microsoft.Azure.Management.ResourceManager.Fluent.Authentication
             this.msiTokenProviderFactory = new MSITokenProviderFactory(msiLoginInformation);
         }
 
+        public AzureCredentials(
+            ServiceClientCredentials armCredentials,
+            ServiceClientCredentials graphCredentials,
+            string tenantId, AzureEnvironment environment)
+            : this(tenantId, environment)
+        {
+            if (armCredentials != null)
+            {
+                credentialsCache[new Uri(Environment.ManagementEndpoint)] = armCredentials;
+            }
+            if (graphCredentials != null)
+            {
+                credentialsCache[new Uri(Environment.GraphEndpoint)] = graphCredentials;
+            }
+        }
+
         private AzureCredentials(string tenantId, AzureEnvironment environment)
         {
             TenantId = tenantId;
@@ -140,6 +156,11 @@ namespace Microsoft.Azure.Management.ResourceManager.Fluent.Authentication
                 else if (msiTokenProviderFactory != null)
                 {
                     credentialsCache[adSettings.TokenAudience] = new TokenCredentials(this.msiTokenProviderFactory.Create(adSettings.TokenAudience.OriginalString));
+                }
+                // no token available for communication
+                else
+                {
+                    throw new RestException($"Cannot communicate with server. No authentication token available for '{adSettings.TokenAudience}'.");
                 }
             }
             await credentialsCache[adSettings.TokenAudience].ProcessHttpRequestAsync(request, cancellationToken);
