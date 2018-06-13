@@ -18,9 +18,7 @@ install:
 script:
 - |-
   ./test_on_linux.sh || travis_terminate 1;
-   if [[ $TRAVIS_PULL_REQUEST == "false" ]] && [[ $TRAVIS_BRANCH == "master" ]]; then
     ./ci/create_image.sh ;
-  fi
 after_script:
   - echo "========== Server log: ============"
   - pwd
