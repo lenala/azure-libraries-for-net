@@ -46,3 +46,5 @@ truncate -s-2 $rootdir/ci/app/test_index
 #sed -i '$! { P; D; }; s|.$||' ./app/test_index
 
 echo "]" >> $rootdir/ci/app/test_index
+
+cat $rootdir/ci/app/test_index
