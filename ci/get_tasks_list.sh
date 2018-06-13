@@ -18,6 +18,8 @@ while read line; do
     if [[ $testcase == Samples* ]] ; then
         testname=echo %testcase% | rev | cut -d'.' -f1 | rev
         recordpath=echo %testcase% | rev | cut -d'.' -f2-7 | rev
+        echo $testname
+        echo $recordpath
         sed -e "s;%testcase%;${testcase};g" -e "s|%testpath%|${sampleTestPath}|g" -e "s|%recordpath%|${recordpath}|g" -e "s|%testname%|${testname}|g" $rootdir/ci/task_template > $rootdir/ci/file.out
         task=$(cat $rootdir/ci/file.out)
         echo $task, >> $rootdir/ci/app/test_index
