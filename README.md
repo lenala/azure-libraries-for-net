@@ -16,7 +16,7 @@ The Azure Management Libraries for .NET is a higher-level, object-oriented API f
   * [Others...](#other-code-samples)
 * [Download](#download)
 * [Prerequisites](#prerequisites)
-* [Updgrading from older versions](#upgrading-from-older-versions)
+* [Upgrading from older versions](#upgrading-from-older-versions)
 * [Help and issues](#help-and-issues)
 * [Contribute code](#contribute-code)
 * [More information](#more-information)
@@ -608,6 +608,7 @@ var database = sqlServer.Databases.Define(databaseName)
 
 - [.NET Core](https://www.microsoft.com/net/core) 
 - Azure Service Principal - see [how to create authentication info](./AUTH.md).
+- Configure and build locally - see ["**to build**" section here](https://github.com/Azure/azure-sdk-for-net/#to-build).
 
 ## Upgrading from older versions
 
